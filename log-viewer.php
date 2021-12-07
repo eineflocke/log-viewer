@@ -2,8 +2,8 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Stat</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<title>log</title>
+<link href="/md/bootstrap.min.css" rel="stylesheet" />
 <style>
 body {
   font-size: 16px;
@@ -26,7 +26,7 @@ pre {
   display: none;
 }
 .fulls {
-  max-height: 500px;
+  max-height: 300px;
 }
 .opens, .closes, a {
   cursor: pointer;
@@ -62,11 +62,12 @@ foreach (glob('*.*') as $file) {
   $excerpt = '';
   $full    = '';
 
-  for ($i = 0; $i < min($nline, $nlinemax); $i++) {
+  for ($i = max($nline - $nlinemax, 0); $i < $nline; $i++) {
     $excerpt = $excerpt . htmlspecialchars($lines[$i]);
   }
 
-  for ($i = 0; $i < min($nline, $nlinemax2); $i++) {
+  #for ($i = 0; $i < min($nline, $nlinemax2); $i++) {
+  for ($i = max($nline - $nlinemax2, 0); $i < $nline; $i++) {
     $full = $full . htmlspecialchars($lines[$i]);
   }
 
@@ -107,6 +108,7 @@ document.querySelectorAll('[id^=excerpt-]').forEach((e) => {
     e.style.display = 'none';
     o.style.display = 'none';
     f.style.display = 'block';
+    f.scrollTop = f.scrollHeight;
     c.style.display = 'inline';
   });
 
