@@ -2,8 +2,8 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>log</title>
-<link href="/md/bootstrap.min.css" rel="stylesheet" />
+<title>log-viewer</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <style>
 body {
   font-size: 16px;
@@ -35,6 +35,7 @@ pre {
 </style>
 </head>
 <body>
+
 <?php
 
 foreach (glob('*.*') as $file) {
@@ -66,7 +67,6 @@ foreach (glob('*.*') as $file) {
     $excerpt = $excerpt . htmlspecialchars($lines[$i]);
   }
 
-  #for ($i = 0; $i < min($nline, $nlinemax2); $i++) {
   for ($i = max($nline - $nlinemax2, 0); $i < $nline; $i++) {
     $full = $full . htmlspecialchars($lines[$i]);
   }
